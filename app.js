@@ -2,12 +2,15 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 require("dotenv/config");
+const cors = require("cors");
+
 app.use(express.json());
+app.use(cors());
 
 const expenseRouter = require("./routes/expense.route");
 
 app.get("/", (req, res) => res.send("starts"));
-app.use("/expense", expenseRouter);
+app.use("/api/expense", expenseRouter);
 
 mongoose.connect(
 	process.env.DB_COLLECTION,
